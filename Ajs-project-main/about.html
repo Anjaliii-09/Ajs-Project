@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Custom Clothing Printing</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-app="about" ng-controller="myCtrl">
+  <header>
+    <div class="main-heading">
+        <h1>Custom Clothing</h1>
+      </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#" ng-click="contact()">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="about-us">
+    <div class="about-us-content">
+      <h2>About Us</h2>
+      <p>Welcome to our custom clothing printing website, where creativity meets quality! Founded by Aman Mahato and Dharma Khadka, our platform offers a seamless and personalized experience for individuals and businesses looking to express their unique style through custom apparel.</p>
+      <p>At our website, we understand the power of self-expression, and that's why we've made it our mission to provide a diverse range of high-quality clothing options that you can personalize to match your individuality. Whether you're looking to create custom t-shirts for a special event, design unique sweatshirts for your sports team, or print custom hoodies for your business, we've got you covered.</p>
+      <p>With our easy-to-use online design tool, you can unleash your creativity and bring your ideas to life. Choose from a wide selection of colors, fonts, and graphics to design your perfect garment. Whether you have a specific design in mind or need inspiration, our intuitive interface makes the design process fun and hassle-free.</p>
+      <p>But we're not just about customization – we're also committed to delivering exceptional quality. We use state-of-the-art printing technology and premium materials to ensure that your custom clothing looks and feels great, wash after wash. Our attention to detail and commitment to excellence set us apart, so you can trust that your custom apparel will exceed your expectations.</p>
+      <p>Whether you're ordering one piece or a bulk order, we offer fast turnaround times and competitive pricing to suit your needs. Plus, our responsive customer service team is always here to assist you every step of the way, ensuring a seamless ordering experience from start to finish.</p>
+      <p>So why wait? Start designing your custom clothing today and make a statement with personalized apparel that reflects your unique style and personality. Join the thousands of satisfied customers who trust us for all their custom clothing needs, and experience the difference of shopping with Aman Mahato and Dharma Khadka's custom clothing printing website.</p>
+    </div>
+  </section>
+  <div class="footer">
+    <p>&copy; 2024 Custom Clothing. No Rights Required for Aman and Dharma.</p>
+  </div>
+
+</body>
+<script>
+var app = angular.module('about', []);
+
+   
+    app.controller('myCtrl', function($scope) {
+      
+      $scope.contact = function() {
+        
+        var contactDetails1 = "Email: amm21csmahato@cmrit.ac.in\nPhone: +91-7880769332\nUSN:1CR21CS023";
+        var contactDetails2 = "Email: dhch21cs@cmrit.ac.in\nPhone: +91-7411502372\nUSN:1CR21CS063";
+        alert("Contact Details:\n" + contactDetails1 + "\n\n" + contactDetails2);
+      };
+    });</script>
+
+
+</html>

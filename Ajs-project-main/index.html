@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Clothing - Home</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="tshirt" ng-controller="myfn">
+  <div class="main-heading">
+    <h1>Custom Clothing</h1>
+  </div>
+  <div class="navbar">
+    <button><a href="#">Home</a></button>
+    <button><a href="cart.html">Cart</a></button>
+    <button><a href="about.html">About Us</a></button>
+    <button><a href="#" ng-model="logout">Logout</a></button>
+  </div>
+  <div style="display: flex; ">
+    <input type="text" class="search-box" id="searchInput" placeholder="Search..." oninput="filterProducts()">
+    <button class="ambu">Search</button>
+  </div>
+  <div style="border: 1px solid 50%; background-color: aqua;height:20px; padding: 2rem; justify-content: center; text-align: center;margin-top: 2px;">
+    <center>
+      <h3 class="product-header">Our Products</h3>
+    </center>
+  </div>
+  <div class="product-panels" id="productPanels">
+    <div class="panel" id="hoodie-panel">
+      <h3>Hoodies</h3>
+      <a href="hoodie.html">
+        <img class="default-img" src="photo/hoodie3.jpg" alt="hoodie,Hoodie">
+        <img class="hover-img" src="photo/hoodie.jpg" alt="hoodie, Hoodie">
+        <p class="title">Stylish Hoodie</p>
+      </a>
+    </div>
+    <div class="panel" id="tshirt-panel">
+      <h3>T-shirts</h3>
+      <a href="tshirt.html">
+        <img class="default-img" src="photo/tshirt1.jpg" alt="tshirt,T-shirts,tshirt,shirt">
+        <img class="hover-img" src="photo/tshirt3.jpg" alt="t-shirt, T-shirts,tshirt,shirt">
+        <p class="title">Cool T-shirt</p>
+      </a>
+    </div>
+    <div class="panel" id="sweatshirt-panel">
+      <h3>Sweatshirts</h3>
+      <a href="sweatshirt.html">
+        <img class="default-img" src="photo/sweatshirt2.jpg" alt="sweatshirt, Sweatshirts">
+        <img class="hover-img" src="photo/sweatshirt4.jpg" alt="sweatshirt, Sweatshirts">
+        <p class="title">Warm Sweatshirt</p>
+      </a>
+    </div>
+    <div class="panel" id="jeans-panel">
+      <h3>Jeans</h3>
+      <a href="jeans.html">
+        <img class="default-img" src="photo/jeans3.jpg" alt="Trendy Jeans,Jeans,jeans">
+        <img class="hover-img" src="photo/jeans1.jpg" alt="Trendy Jeans,Jeans,jeans">
+        <p class="title">Trendy Jeans</p>
+      </a>
+    </div>
+
+    
+  </div>
+  <div class="upload-section">
+    <!-- File upload input -->
+    <input type="file" id="imageUpload" accept="image/*">
+    <label for="imageUpload">Upload Your Own Design</label>
+    <!-- Selections for size and category -->
+    <div class="selection">
+      <select id="size">
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+      </select>
+      <select id="category">
+        <option value="tshirt">T-shirt</option>
+        <option value="hoodie">Hoodie</option>
+        <option value="jeans">Jeans</option>
+        <option value="sweatshirt">Sweatshirt</option>
+      </select>
+      <!-- Button to add to cart -->
+      <button class="addToCart">Add to Cart</button>
+    </div>
+  </div>
+  <div class="footer">
+    <p>&copy; 2024 Custom Clothing. No Rights Required for Aman and Dharma.</p>
+  </div>
+  <script>
+    function filterProducts() {
+      const searchInput = document.getElementById('searchInput').value.toLowerCase();
+      const productPanels = document.getElementById('productPanels');
+      const panels = productPanels.getElementsByClassName('panel');
+      for (let i = 0; i < panels.length; i++) {
+        const title = panels[i].querySelector('.title').textContent.toLowerCase();
+        if (title.includes(searchInput)) {
+          panels[i].style.display = 'block';
+        } else {
+          panels[i].style.display = 'none';
+        }
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const addToCartButtons = document.querySelectorAll('.addToCart');
+      addToCartButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          // Get uploaded image
+          const fileInput = document.getElementById('imageUpload');
+          const file = fileInput.files[0];
+          const imageURL = URL.createObjectURL(file);
+
+          // Get selected size and category
+          const selectedSize = document.getElementById('size').value;
+          const selectedCategory = document.getElementById('category').value;
+
+          // Create item object
+          const item = {
+            image: imageURL,
+            size: selectedSize,
+            category: selectedCategory
+          };
+
+          // Add item to cart
+          let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+          cartItems.push(item);
+          localStorage.setItem('cart', JSON.stringify(cartItems));
+          alert('Item added to cart!');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

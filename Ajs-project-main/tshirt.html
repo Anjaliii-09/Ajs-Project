@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tshirt - Custom Clothing Printing</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+</head>
+
+<body>
+  <div class="main-heading">
+    <h1>Custom Clothing</h1>
+  </div>
+  <header>
+    <h1>T-Shirt Options</h1>
+  </header>
+  <div class="product-panels">
+    <div class="panel" onclick="addToCart('tshirt1', 25)">
+      <img src="photo/tshirt1.jpg" alt="Photo 1">
+      <span class="add-to-cart">+</span>
+    </div>
+    <div class="panel" onclick="addToCart('tshirt2', 35)">
+      <img src="photo/tshirt2.jpg" alt="Photo 2">
+      <span class="add-to-cart">+</span>
+    </div>
+    <div class="panel" onclick="addToCart('tshirt3', 36)">
+      <img src="photo/tshirt3.jpg" alt="Photo 3">
+      <span class="add-to-cart">+</span>
+    </div>
+    <div class="panel" onclick="addToCart('tshirt4', 33)">
+      <img src="photo/tshirt4.jpg" alt="Photo 4">
+      <span class="add-to-cart">+</span>
+    </div>
+    <div class="panel"  onclick="addToCart('tshirt5', 28)">
+      <img src="photo/tshirt5.jpg" alt="Photo 5">
+      <span class="add-to-cart">+</span>
+    </div>
+    <div class="panel" onclick="addToCart('tshirt6', 29)">
+      <img src="photo\tshirt6.jpg" alt="Photo 6">
+      <span class="add-to-cart">+</span>
+    </div>
+    <div class="panel" onclick="addToCart('tshirt7', 25)">
+      <img src="photo\tshirt7.jpg" alt="Photo 7">
+      <span class="add-to-cart">+</span>
+    </div>
+    <div class="panel" onclick="addToCart('tshirt8', 34)">
+      <img src="photo\tshirt8.jpg" alt="Photo 8">
+      <span class="add-to-cart">+</span>
+    </div>
+    <div class="panel" onclick="addToCart('tshirt9', 40)">
+      <img src="photo\tshirt9.jpg" alt="Photo 9">
+      <span class="add-to-cart">+</span>
+    </div>
+    <div class="panel" onclick="addToCart('tshirt10', 25)">
+      <img src="photo\tshirt10.jpg" alt="Photo 10">
+      <span class="add-to-cart">+</span>
+    </div>
+  </div>
+  <a href="index.html" class="back-to-home">Back to Home</a>
+  <div class="footer">
+    <p>&copy; 2024 Custom Clothing. No Rights Required for Aman and Dharma.</p>
+  </div>
+
+</body>
+<script>
+  function addToCart(itemName, price) {
+    // Get cart items from localStorage or initialize an empty array
+    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Add the selected item to the cart
+    cartItems.push({
+      name: itemName,
+      price: price,
+    });
+
+    // Store updated cart items back to localStorage
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+
+    // Redirect to the cart page
+    window.location.href = 'cart.html';
+  }
+</script>
+</html>

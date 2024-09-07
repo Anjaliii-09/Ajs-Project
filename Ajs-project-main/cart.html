@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - Custom Clothing</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+     body {
+      font-family: Arial, sans-serif;
+    }
+    
+    .main-heading {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .cart-items {
+      margin-bottom: 20px;
+    }
+    
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .cart-item img {
+      width: 100px;
+      height: auto;
+      margin-right: 10px;
+    }
+    
+    .item-details {
+      flex-grow: 1;
+    }
+    
+    .item-details h3 {
+      margin-top: 0;
+    }
+    
+    .cart-summary {
+      border-top: 2px solid #333;
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+    
+    .summary-details {
+      margin-bottom: 10px;
+    }
+    
+    .back-to-home {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+    <div class="main-heading">
+      <h1>Custom Clothing - Cart</h1>
+    </div>
+  
+    <div class="cart-items">
+      <!-- Cart items will be dynamically generated here -->
+    </div>
+  
+    <div class="cart-summary">
+      <h2>Cart Summary</h2>
+      <div class="summary-details">
+        <p>Total Items: <span id="total-items">0</span></p>
+        <p>Total Price: <span id="total-price">$0</span></p>
+      </div>
+      <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+    <a href="index.html" class="back-to-home">Back to Home</a>
+    <div class="footer">
+      <p>&copy; 2024 Custom Clothing. No Rights Required for Aman and Dharma.</p>
+    </div>
+   
+  <script>
+    // Define removeItem function in the global scope
+    function removeItem(index) {
+      // Get cart items from localStorage
+      let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Remove the item from the cartItems array
+      cartItems.splice(index, 1);
+
+      // Update localStorage
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+
+      // Re-render cart items
+      renderCartItems();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      // Get cart items from localStorage
+      let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Select the cart items container
+      const cartItemsContainer = document.querySelector('.cart-items');
+
+      // Select the total items and total price elements
+      const totalItemsElement = document.getElementById('total-items');
+      const totalPriceElement = document.getElementById('total-price');
+
+      // Function to render cart items
+      function renderCartItems() {
+        cartItemsContainer.innerHTML = ''; // Clear previous content
+        let totalPrice = 0;
+        
+        // Loop through each item in the cart
+        cartItems.forEach((item, index) => {
+          // Create a new cart item element
+          const cartItemElement = document.createElement('div');
+          cartItemElement.classList.add('cart-item');
+          
+          // Add item details to the cart item element
+          cartItemElement.innerHTML = `
+            <img src="photo/${item.name}.jpg" alt="${item.name}">
+            <div class="item-details">
+              <h3>${item.name}</h3>
+              <p>Price: $${item.price}</p>
+            </div>
+            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+          `;
+          
+          // Append the cart item element to the container
+          cartItemsContainer.appendChild(cartItemElement);
+          
+          // Add the price of the item to the total price
+          totalPrice += parseFloat(item.price);
+        });
+
+        // Update total items and total price
+        totalItemsElement.textContent = cartItems.length;
+        totalPriceElement.textContent = '$' + totalPrice.toFixed(2);
+      }
+
+      // Call the function to render cart items when the page loads
+      renderCartItems();
+    });
+  </script>
+</body>
+</html>
